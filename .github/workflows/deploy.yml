@@ -1,4 +1,4 @@
-name: Deploy React App to VPS
+name: 🚀 Deploy React App to VPS
 
 on:
   push:
@@ -12,28 +12,33 @@ jobs:
       - name: 📥 Checkout Code
         uses: actions/checkout@v3
 
-      - name: 🔧 Install Dependencies & Build
+      - name: 🧰 Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Make sure this matches your local version
+
+      - name: 📦 Install Dependencies & Build
         run: |
           npm install
           npm run build
 
-      - name: 🚀 Deploy to VPS via SCP
+      - name: 📤 Upload Build to VPS
         uses: appleboy/scp-action@v0.1.3
         with:
           host: 145.223.79.113
           username: root
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "build/*"
-          target: "/home/react-app"
+          target: "/var/www/bakhtreact"
 
-      - name: 🛠️ Run Deployment Commands on VPS
+      - name: 🛠️ Set Permissions & Reload Apache
         uses: appleboy/ssh-action@master
         with:
           host: 145.223.79.113
           username: root
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            chown -R www-data:www-data /home/react-app
-            chmod -R 755 /home/react-app
+            chown -R www-data:www-data /var/www/bakhtreact
+            chmod -R 755 /var/www/bakhtreact
             systemctl reload apache2
-            echo "✅ React App deployed and Apache reloaded"
+            echo "✅ React App deployed successfully"
