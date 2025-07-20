@@ -23,7 +23,7 @@ jobs:
           host: 145.223.79.113
           username: root
           key: ${{ secrets.VPS_SSH_KEY }}
-          source: "build/"
+          source: "build/*"
           target: "/home/react-app"
 
       - name: 🛠️ Run Deployment Commands on VPS
@@ -33,5 +33,7 @@ jobs:
           username: root
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd /home/react-app
-            echo "Deployment complete"
+            chown -R www-data:www-data /home/react-app
+            chmod -R 755 /home/react-app
+            systemctl reload apache2
+            echo "✅ React App deployed and Apache reloaded"
