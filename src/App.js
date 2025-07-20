@@ -10,7 +10,7 @@ function App() {
           🚀 <strong>Hello Bakht!</strong> Your CI/CD setup is working perfectly. 🎉
         </p>
         <p>
-          This message confirms that the React app was deployed from GitHub to your VPS using GitHub Actions.
+          This message confirms that the React app was deployed from GitHub to your VPS using GitHub Actions. PartII
         </p>
         <p>
           Domain: <code>bakhtreact.mypowerly.com</code>
