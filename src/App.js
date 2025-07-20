@@ -7,16 +7,14 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          🚀 <strong>Hello Bakht!</strong> Your CI/CD setup is working perfectly. 🎉
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>
+          This message confirms that the React app was deployed from GitHub to your VPS using GitHub Actions.
+        </p>
+        <p>
+          Domain: <code>bakhtreact.mypowerly.com</code>
+        </p>
       </header>
     </div>
   );
